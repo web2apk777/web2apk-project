@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web2APK Builder — Turn any Website or HTML into an Android APK</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body class="theme-dark">
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>Web2APK Builder</h1>
+          <span class="badge badge-pro">PRO BUILDER</span>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <button id="themeToggleBtn" class="btn btn-icon" title="Toggle Theme">
+          <span class="theme-icon">🌙</span>
+        </button>
+        <button id="viewHistoryBtn" class="btn btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          Build History
+        </button>
+        <button id="adminConfigBtn" class="btn btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          CI / GitHub Config
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="hero-pill">⚡ No Android Studio Required • Gradle & GitHub Actions Powered</div>
+      <h2>Turn your website or HTML project into an Android APK.</h2>
+      <p>Configure your web app, upload branding assets, customize Android WebView capabilities, and package an enterprise-ready APK directly via automated CI/CD.</p>
+    </div>
+  </section>
+
+  <!-- Main Container with Split Layout -->
+  <main class="main-layout">
+    <!-- Left Column: Wizard & Steps -->
+    <div class="wizard-column">
+      <!-- Progress Stepper -->
+      <nav class="stepper-nav" aria-label="Build Steps">
+        <button class="step-btn active" data-step="1">
+          <span class="step-number">1</span>
+          <span class="step-label">Source</span>
+        </button>
+        <div class="step-line"></div>
+        <button class="step-btn" data-step="2">
+          <span class="step-number">2</span>
+          <span class="step-label">App Info</span>
+        </button>
+        <div class="step-line"></div>
+        <button class="step-btn" data-step="3">
+          <span class="step-number">3</span>
+          <span class="step-label">Branding</span>
+        </button>
+        <div class="step-line"></div>
+        <button class="step-btn" data-step="4">
+          <span class="step-number">4</span>
+          <span class="step-label">Appearance</span>
+        </button>
+        <div class="step-line"></div>
+        <button class="step-btn" data-step="5">
+          <span class="step-number">5</span>
+          <span class="step-label">Settings</span>
+        </button>
+        <div class="step-line"></div>
+        <button class="step-btn" data-step="6">
+          <span class="step-number">6</span>
+          <span class="step-label">Build</span>
+        </button>
+      </nav>
+
+      <!-- Step Cards Container -->
+      <div class="step-cards">
+        <!-- STEP 1: Source -->
+        <div class="card step-card active" id="step1">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-step-badge">STEP 1</span>
+              <h3>Website / HTML Source</h3>
+            </div>
+            <p class="card-subtitle">Choose whether to wrap a live website URL or bundle local HTML/CSS/JavaScript assets.</p>
+          </div>
+
+          <div class="source-selector">
+            <label class="source-option active">
+              <input type="radio" name="sourceType" value="url" checked>
+              <div class="source-option-content">
+                <div class="source-icon">🌐</div>
+                <div class="source-title">Website URL</div>
+                <p>Embed an existing online web app, PWA, or responsive website.</p>
+              </div>
+            </label>
+            <label class="source-option">
+              <input type="radio" name="sourceType" value="assets">
+              <div class="source-option-content">
+                <div class="source-icon">📦</div>
+                <div class="source-title">HTML / ZIP Upload</div>
+                <p>Upload a standalone web package (.zip, .html, css, js, assets).</p>
+              </div>
+            </label>
+          </div>
+
+          <!-- URL Input Section -->
+          <div id="urlSection" class="input-panel">
+            <div class="form-group">
+              <label for="webUrl">Website URL <span class="required">*</span></label>
+              <div class="input-with-icon">
+                <span class="input-icon">🔗</span>
+                <input type="url" id="webUrl" placeholder="https://example.com" value="https://example.com">
+                <button type="button" id="testUrlBtn" class="btn btn-sm btn-outline">Test in Preview</button>
+              </div>
+              <div id="urlSecurityNotice" class="notice notice-success">
+                <span class="notice-icon">🔒</span>
+                <span>HTTPS is recommended for secure Android network communications.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Assets Upload Section -->
+          <div id="assetsSection" class="input-panel hidden">
+            <div class="drop-zone" id="dropZone">
+              <div class="drop-icon">📁</div>
+              <h4>Drag & drop ZIP archive or HTML files</h4>
+              <p>Supported: .zip, .html, .css, .js, .png, .jpg, .svg, .woff2 (Max 50MB)</p>
+              <input type="file" id="zipFileInput" accept=".zip,.html,.htm" class="file-input-hidden">
+              <button type="button" class="btn btn-secondary" onclick="document.getElementById('zipFileInput').click()">Browse Files</button>
+            </div>
+            <div id="fileUploadStatus" class="file-upload-status hidden">
+              <div class="file-info">
+                <span class="file-name" id="uploadedFileName">project.zip</span>
+                <span class="file-size" id="uploadedFileSize">1.2 MB</span>
+              </div>
+              <button type="button" id="removeFileBtn" class="btn-text-danger">Remove</button>
+            </div>
+            <div class="form-group mt-3">
+              <label for="startHtmlFile">Entry HTML File</label>
+              <input type="text" id="startHtmlFile" value="index.html" placeholder="index.html">
+              <span class="form-hint">Android WebViewAssetLoader will securely serve this starting file from assets/.</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="flex-spacer"></div>
+            <button class="btn btn-primary next-step-btn" data-next="2">
+              Next: App Information →
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2: App Information -->
+        <div class="card step-card" id="step2">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-step-badge">STEP 2</span>
+              <h3>Project Information</h3>
+            </div>
+            <p class="card-subtitle">Set your application name, unique package identifier, and build version metadata.</p>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="appName">App Name <span class="required">*</span></label>
+              <input type="text" id="appName" value="My Website App" placeholder="My Website App">
+              <span class="form-hint">The title displayed on the Android launcher and home screen.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="packageName">Package Name (Application ID) <span class="required">*</span></label>
+              <input type="text" id="packageName" value="com.example.mywebsite" placeholder="com.company.appname">
+              <span id="packageValidation" class="form-hint text-success">✓ Valid Android package format</span>
+            </div>
+
+            <div class="form-group">
+              <label for="versionName">Version Name</label>
+              <input type="text" id="versionName" value="1.0.0" placeholder="1.0.0">
+            </div>
+
+            <div class="form-group">
+              <label for="versionCode">Version Code</label>
+              <input type="number" id="versionCode" value="1" min="1" step="1">
+            </div>
+
+            <div class="form-group">
+              <label for="developerName">Developer / Organization Name</label>
+              <input type="text" id="developerName" value="Web2APK Developer" placeholder="Acme Studio">
+            </div>
+
+            <div class="form-group">
+              <label for="appDescription">App Description</label>
+              <input type="text" id="appDescription" value="A responsive web application packaged for Android" placeholder="Short description of the app">
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button class="btn btn-secondary prev-step-btn" data-prev="1">← Back</button>
+            <div class="flex-spacer"></div>
+            <button class="btn btn-primary next-step-btn" data-next="3">Next: Branding & Splash →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3: Icon & Splash -->
+        <div class="card step-card" id="step3">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-step-badge">STEP 3</span>
+              <h3>Custom App Icon & Splash Screen</h3>
+            </div>
+            <p class="card-subtitle">Upload your custom launcher icon and customize a high-performance Android splash screen.</p>
+          </div>
+
+          <!-- Icon Section -->
+          <div class="branding-grid">
+            <div class="branding-card">
+              <h4>Launcher App Icon</h4>
+              <p class="text-muted">Recommended: 512x512 PNG. Automatically cropped and adapted to all Android mipmap densities.</p>
+              <div class="icon-editor-row">
+                <div class="icon-preview-box" id="iconPreviewContainer">
+                  <div class="icon-shape-preview" id="iconShapePreview">
+                    <img id="customIconImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%232563eb'/%3E%3Cpath d='M25 40 L50 25 L75 40 L75 75 L25 75 Z' fill='%23ffffff' opacity='0.9'/%3E%3Ccircle cx='50' cy='55' r='12' fill='%2310b981'/%3E%3C/svg%3E" alt="App Icon">
+                  </div>
+                </div>
+                <div class="icon-controls">
+                  <input type="file" id="iconFileInput" accept="image/png,image/jpeg,image/webp" class="file-input-hidden">
+                  <button type="button" class="btn btn-sm btn-secondary" onclick="document.getElementById('iconFileInput').click()">Upload Icon</button>
+                  <button type="button" id="resetIconBtn" class="btn btn-sm btn-outline">Reset to Default</button>
+                  <div class="shape-selector mt-2">
+                    <span class="text-xs">Preview Shape:</span>
+                    <button type="button" class="chip active" data-shape="squircle">Squircle</button>
+                    <button type="button" class="chip" data-shape="circle">Circle</button>
+                    <button type="button" class="chip" data-shape="square">Square</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Splash Screen Section -->
+            <div class="branding-card">
+              <h4>Splash Screen</h4>
+              <p class="text-muted">Modern Android 12+ SplashScreen API compatible layout.</p>
+              <div class="form-grid-sm">
+                <div class="form-group">
+                  <label for="splashBgColor">Background Color</label>
+                  <div class="color-picker-input">
+                    <input type="color" id="splashBgColor" value="#0F172A">
+                    <input type="text" id="splashBgColorHex" value="#0F172A" class="color-text-input">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="splashDuration">Duration: <span id="durationVal">1.5</span>s</label>
+                  <input type="range" id="splashDuration" min="0.5" max="3.0" step="0.5" value="1.5">
+                </div>
+                <div class="form-group col-span-2">
+                  <label for="splashSubtitle">Splash Subtitle / Tagline</label>
+                  <input type="text" id="splashSubtitle" value="Powered by Web2APK" placeholder="Powered by Web2APK">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button class="btn btn-secondary prev-step-btn" data-prev="2">← Back</button>
+            <div class="flex-spacer"></div>
+            <button class="btn btn-primary next-step-btn" data-next="4">Next: Appearance →</button>
+          </div>
+        </div>
+
+        <!-- STEP 4: Appearance -->
+        <div class="card step-card" id="step4">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-step-badge">STEP 4</span>
+              <h3>App Appearance & Device Mode</h3>
+            </div>
+            <p class="card-subtitle">Select color palette, screen orientation, and Fire TV / Android TV compatibility.</p>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Theme Mode</label>
+              <div class="radio-pill-group">
+                <label class="pill-option active"><input type="radio" name="appThemeMode" value="system" checked> System Default</label>
+                <label class="pill-option"><input type="radio" name="appThemeMode" value="light"> Light</label>
+                <label class="pill-option"><input type="radio" name="appThemeMode" value="dark"> Dark</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Screen Orientation</label>
+              <div class="radio-pill-group">
+                <label class="pill-option active"><input type="radio" name="appOrientation" value="auto" checked> Auto Rotate</label>
+                <label class="pill-option"><input type="radio" name="appOrientation" value="portrait"> Portrait</label>
+                <label class="pill-option"><input type="radio" name="appOrientation" value="landscape"> Landscape</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="primaryColor">Primary Color</label>
+              <div class="color-picker-input">
+                <input type="color" id="primaryColor" value="#2563EB">
+                <input type="text" id="primaryColorHex" value="#2563EB" class="color-text-input">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="accentColor">Accent Color</label>
+              <div class="color-picker-input">
+                <input type="color" id="accentColor" value="#10B981">
+                <input type="text" id="accentColorHex" value="#10B981" class="color-text-input">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="statusBarColor">Status Bar Color</label>
+              <div class="color-picker-input">
+                <input type="color" id="statusBarColor" value="#1E293B">
+                <input type="text" id="statusBarColorHex" value="#1E293B" class="color-text-input">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="navBarColor">Navigation Bar Color</label>
+              <div class="color-picker-input">
+                <input type="color" id="navBarColor" value="#0F172A">
+                <input type="text" id="navBarColorHex" value="#0F172A" class="color-text-input">
+              </div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Fire TV / Android TV Compatibility -->
+          <div class="feature-toggle-card">
+            <div class="toggle-info">
+              <div class="toggle-title-row">
+                <span class="icon-tv">📺</span>
+                <h4>TV / Fire TV Mode</h4>
+                <span class="badge badge-warning">OPTIONAL</span>
+              </div>
+              <p>Adds D-pad remote navigation, visible focus states, 16:9 landscape layout, and leanback launcher banner compatibility.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="tvModeToggle">
+              <span class="slider round"></span>
+            </label>
+          </div>
+
+          <div class="card-footer">
+            <button class="btn btn-secondary prev-step-btn" data-prev="3">← Back</button>
+            <div class="flex-spacer"></div>
+            <button class="btn btn-primary next-step-btn" data-next="5">Next: WebView & Permissions →</button>
+          </div>
+        </div>
+
+        <!-- STEP 5: WebView & Permissions -->
+        <div class="card step-card" id="step5">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-step-badge">STEP 5</span>
+              <h3>WebView Settings & Permissions</h3>
+            </div>
+            <p class="card-subtitle">Configure runtime WebView flags and declare only the required Android permissions.</p>
+          </div>
+
+          <div class="settings-section">
+            <h4>Core WebView Features</h4>
+            <div class="checkbox-grid">
+              <label class="checkbox-card">
+                <input type="checkbox" id="enableJs" checked>
+                <div class="checkbox-info">
+                  <strong>JavaScript</strong>
+                  <span>Enable client script execution (required by modern apps)</span>
+                </div>
+              </label>
+              <label class="checkbox-card">
+                <input type="checkbox" id="enableDomStorage" checked>
+                <div class="checkbox-info">
+                  <strong>DOM Storage</strong>
+                  <span>Enable localStorage and sessionStorage</span>
+                </div>
+              </label>
+              <label class="checkbox-card">
+                <input type="checkbox" id="enableZoom" checked>
+                <div class="checkbox-info">
+                  <strong>Pinch-to-Zoom</strong>
+                  <span>Support viewport zooming controls</span>
+                </div>
+              </label>
+              <label class="checkbox-card">
+                <input type="checkbox" id="enablePullToRefresh" checked>
+                <div class="checkbox-info">
+                  <strong>Pull to Refresh</strong>
+                  <span>Swipe down to reload the current page</span>
+                </div>
+              </label>
+              <label class="checkbox-card">
+                <input type="checkbox" id="enableFileUpload" checked>
+                <div class="checkbox-info">
+                  <strong>File Upload Support</strong>
+                  <span>Support HTML5 &lt;input type="file"&gt; picker</span>
+                </div>
+              </label>
+              <label class="checkbox-card">
+                <input type="checkbox" id="enableFullscreenVideo" checked>
+                <div class="checkbox-info">
+                  <strong>Fullscreen Video</strong>
+                  <span>Support WebChromeClient fullscreen media playback</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="settings-section mt-4">
+            <h4>Device Hardware & Permissions</h4>
+            <div class="checkbox-grid">
+              <label class="checkbox-card">
+                <input type="checkbox" id="permCamera">
+                <div class="checkbox-info">
+                  <strong>Camera Permission</strong>
+                  <span>Allow video capture and camera feeds</span>
+                </div>
+              </label>
+              <label class="checkbox-card">
+                <input type="checkbox" id="permMic">
+                <div class="checkbox-info">
+                  <strong>Microphone Permission</strong>
+                  <span>Allow audio recording and speech input</span>
+                </div>
+              </label>
+              <label class="checkbox-card">
+                <input type="checkbox" id="permLocation">
+                <div class="checkbox-info">
+                  <strong>Geolocation Permission</strong>
+                  <span>Allow HTML5 navigator.geolocation access</span>
+                </div>
+              </label>
+              <label class="checkbox-card">
+                <input type="checkbox" id="permNotifications">
+                <div class="checkbox-info">
+                  <strong>Push Notifications</strong>
+                  <span>POST_NOTIFICATIONS permission for Android 13+</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="settings-section mt-4">
+            <h4>Back Button Navigation Behavior</h4>
+            <div class="radio-pill-group">
+              <label class="pill-option active"><input type="radio" name="backNav" value="history" checked> Web History First (Go back in WebView)</label>
+              <label class="pill-option"><input type="radio" name="backNav" value="confirm"> Exit Confirmation Dialog</label>
+              <label class="pill-option"><input type="radio" name="backNav" value="immediate"> Exit App Immediately</label>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button class="btn btn-secondary prev-step-btn" data-prev="4">← Back</button>
+            <div class="flex-spacer"></div>
+            <button class="btn btn-primary next-step-btn" data-next="6">Next: Review & Build →</button>
+          </div>
+        </div>
+
+        <!-- STEP 6: Review & Build -->
+        <div class="card step-card" id="step6">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-step-badge">STEP 6</span>
+              <h3>Build Android APK</h3>
+            </div>
+            <p class="card-subtitle">Review configuration, check compliance, and initiate automated build or export project.</p>
+          </div>
+
+          <!-- Configuration Summary Card -->
+          <div class="summary-card">
+            <div class="summary-item">
+              <span class="summary-label">App Name:</span>
+              <strong id="sumAppName">My Website App</strong>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Package Name:</span>
+              <code id="sumPackage">com.example.mywebsite</code>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Source Mode:</span>
+              <span id="sumSource">Website URL (https://example.com)</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Version:</span>
+              <span id="sumVersion">v1.0.0 (Code 1)</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Orientation & TV:</span>
+              <span id="sumMode">Auto Rotate • Phone & Tablet</span>
+            </div>
+          </div>
+
+          <!-- Legal Disclaimer Notice (Mandatory Requirement) -->
+          <div class="legal-notice-box">
+            <div class="notice-icon">⚖️</div>
+            <div class="notice-text">
+              <strong>User Content & Rights Notice:</strong>
+              <p>Users are responsible for ensuring they have the necessary rights and permissions to package, distribute, or display the websites, HTML files, images, code, trademarks, and other content they submit. Web2APK Builder does not grant copyright or distribution rights.</p>
+            </div>
+          </div>
+
+          <!-- Build Actions -->
+          <div class="build-actions-row">
+            <button id="startBuildBtn" class="btn btn-primary btn-lg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              Build APK via Pipeline
+            </button>
+            <button id="downloadZipBtn" class="btn btn-secondary btn-lg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              Export Android Project (.ZIP)
+            </button>
+          </div>
+
+          <div class="card-footer">
+            <button class="btn btn-secondary prev-step-btn" data-prev="5">← Back to Settings</button>
+            <div class="flex-spacer"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Interactive Live Device Preview -->
+    <aside class="preview-column">
+      <div class="device-card">
+        <div class="device-header">
+          <h4>Interactive Simulator</h4>
+          <div class="device-toggles">
+            <button type="button" class="btn-device-toggle active" id="btnPreviewMobile" title="Mobile Frame">📱 Phone</button>
+            <button type="button" class="btn-device-toggle" id="btnPreviewTV" title="TV Frame">📺 Fire TV</button>
+            <button type="button" class="btn-device-toggle" id="btnPreviewRotate" title="Rotate Orientation">🔄 Rotate</button>
+          </div>
+        </div>
+
+        <!-- Phone / TV Mockup Frame -->
+        <div class="device-frame frame-mobile" id="deviceFrame">
+          <div class="device-notch" id="deviceNotch"></div>
+          <div class="device-status-bar" id="deviceStatusBar">
+            <span class="status-time">9:41</span>
+            <div class="status-icons">
+              <span>📶</span>
+              <span>5G</span>
+              <span>🔋</span>
+            </div>
+          </div>
+
+          <!-- WebView Container inside frame -->
+          <div class="device-screen" id="deviceScreen">
+            <!-- Simulated Splash Overlay -->
+            <div class="splash-preview-overlay" id="splashPreviewOverlay">
+              <div class="splash-logo" id="splashLogo">
+                <img id="splashLogoImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%232563eb'/%3E%3Cpath d='M25 40 L50 25 L75 40 L75 75 L25 75 Z' fill='%23ffffff' opacity='0.9'/%3E%3Ccircle cx='50' cy='55' r='12' fill='%2310b981'/%3E%3C/svg%3E" alt="Splash">
+              </div>
+              <h3 id="splashTitlePreview">My Website App</h3>
+              <p id="splashSubtitlePreview">Powered by Web2APK</p>
+            </div>
+
+            <!-- Simulated Browser / WebView -->
+            <iframe id="previewIframe" src="about:blank" title="Live Preview"></iframe>
+          </div>
+
+          <!-- Navigation Gesture Bar -->
+          <div class="device-nav-bar" id="deviceNavBar">
+            <div class="nav-indicator"></div>
+          </div>
+        </div>
+
+        <div class="preview-footer">
+          <span class="preview-url-badge" id="previewUrlLabel">URL: https://example.com</span>
+          <button type="button" class="btn-text" id="reloadPreviewBtn">🔄 Reload Frame</button>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Build Progress Modal -->
+  <div class="modal-overlay hidden" id="buildProgressModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>APK Build Pipeline</h3>
+        <span class="build-status-pill in-progress" id="modalStatusPill">BUILDING...</span>
+      </div>
+      <div class="modal-body">
+        <!-- 10 Pipeline Stages -->
+        <div class="pipeline-list">
+          <div class="pipeline-item" data-stage="1">
+            <span class="stage-icon">⏳</span>
+            <div class="stage-info"><strong>1. Preparing project</strong><span>Validating package structure and metadata</span></div>
+          </div>
+          <div class="pipeline-item" data-stage="2">
+            <span class="stage-icon">⏳</span>
+            <div class="stage-info"><strong>2. Uploading / Bundling source</strong><span>Staging web assets or URL configurations</span></div>
+          </div>
+          <div class="pipeline-item" data-stage="3">
+            <span class="stage-icon">⏳</span>
+            <div class="stage-info"><strong>3. Generating Android project</strong><span>Creating Kotlin files, Gradle scripts, and Manifest</span></div>
+          </div>
+          <div class="pipeline-item" data-stage="4">
+            <span class="stage-icon">⏳</span>
+            <div class="stage-info"><strong>4. Generating icon</strong><span>Rendering adaptive icons for all mipmap densities</span></div>
+          </div>
+          <div class="pipeline-item" data-stage="5">
+            <span class="stage-icon">⏳</span>
+            <div class="stage-info"><strong>5. Generating splash screen</strong><span>Injecting modern Android SplashScreen themes</span></div>
+          </div>
+          <div class="pipeline-item" data-stage="6">
+            <span class="stage-icon">⏳</span>
+            <div class="stage-info"><strong>6. Configuring WebView</strong><span>Applying security policies, cookies, and bridge</span></div>
+          </div>
+          <div class="pipeline-item" data-stage="7">
+            <span class="stage-icon">⏳</span>
+            <div class="stage-info"><strong>7. Building APK</strong><span>Compiling Kotlin and assembling dex via Gradle</span></div>
+          </div>
+          <div class="pipeline-item" data-stage="8">
+            <span class="stage-icon">⏳</span>
+            <div class="stage-info"><strong>8. Signing APK</strong><span>Applying v1/v2 Android Keystore signatures</span></div>
+          </div>
+          <div class="pipeline-item" data-stage="9">
+            <span class="stage-icon">⏳</span>
+            <div class="stage-info"><strong>9. Finalizing</strong><span>Aligning zipalign and generating SHA-256 fingerprint</span></div>
+          </div>
+          <div class="pipeline-item" data-stage="10">
+            <span class="stage-icon">⏳</span>
+            <div class="stage-info"><strong>10. Complete</strong><span>Packaging ready for installation and download</span></div>
+          </div>
+        </div>
+
+        <!-- Terminal Log Console -->
+        <div class="terminal-box">
+          <div class="terminal-header">Terminal Build Logs</div>
+          <pre class="terminal-content" id="terminalLogs">Starting Web2APK compilation daemon...</pre>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="closeModalBtn" class="btn btn-secondary">Close</button>
+        <button id="downloadApkBtn" class="btn btn-primary hidden">Download APK (18.4 MB)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Build History Modal / Drawer -->
+  <div class="modal-overlay hidden" id="historyModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <h3>Build History</h3>
+        <button class="modal-close-btn" id="closeHistoryBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>App Name</th>
+                <th>Package</th>
+                <th>Version</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Size</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="historyTableBody">
+              <!-- Dynamically populated from JS/LocalStorage/API -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin / GitHub CI Config Modal -->
+  <div class="modal-overlay hidden" id="adminModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>CI / GitHub Actions Configuration</h3>
+        <button class="modal-close-btn" id="closeAdminBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted">Configure GitHub Secrets to enable automatic cloud building of signed Release APKs via GitHub Actions.</p>
+        <div class="form-group mt-3">
+          <label for="adminRepo">GitHub Repository (owner/repo)</label>
+          <input type="text" id="adminRepo" value="username/my-web2apk-app" placeholder="owner/repo">
+        </div>
+        <div class="form-group">
+          <label for="adminBranch">Default Branch</label>
+          <input type="text" id="adminBranch" value="main">
+        </div>
+        <div class="form-group">
+          <label for="adminMaxUpload">Max Upload Size (MB)</label>
+          <input type="number" id="adminMaxUpload" value="50" min="5" max="200">
+        </div>
+        <div class="form-group">
+          <label for="adminTimeout">Build Timeout (minutes)</label>
+          <input type="number" id="adminTimeout" value="45" min="10" max="90">
+        </div>
+        <div class="secrets-guide">
+          <h5>Required GitHub Repository Secrets:</h5>
+          <ul>
+            <li><code>KEYSTORE_BASE64</code>: Base64 encoded upload signing keystore (.jks)</li>
+            <li><code>KEYSTORE_PASSWORD</code>: Password of the keystore</li>
+            <li><code>KEY_ALIAS</code>: Alias name of the release key</li>
+            <li><code>KEY_PASSWORD</code>: Password of the release key</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="saveAdminConfigBtn" class="btn btn-primary">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

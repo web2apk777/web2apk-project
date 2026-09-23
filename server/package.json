@@ -1,0 +1,20 @@
+{
+  "name": "web2apk-backend",
+  "version": "1.0.0",
+  "description": "Production API and Build Worker for Web2APK Builder",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "worker": "node builder/worker.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "multer": "^1.4.5-lts.1",
+    "adm-zip": "^0.5.12",
+    "dotenv": "^16.4.5",
+    "express-rate-limit": "^7.2.0",
+    "uuid": "^9.0.1"
+  }
+}

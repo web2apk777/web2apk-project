@@ -1,0 +1,6 @@
+{
+  "name": "Web2APK Builder",
+  "description": "Turn your website or HTML project into an Android APK.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
